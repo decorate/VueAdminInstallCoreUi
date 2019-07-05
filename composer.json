@@ -1,0 +1,35 @@
+{
+  "name": "decorate/vue-admin-install-coreui",
+  "description": "admin template install from coreui",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "mitu",
+      "email": "mitu2687sp@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Decorate\\": "src",
+      "VueAdminInstallCoreUi\\Test\\": "tests"
+    }
+  },
+  "require": {
+    "laravel/passport": "^7.2"
+  },
+  "scripts": {
+    "test": "../vendor/bin/phpunit"
+  },
+  "minimum-stability": "dev",
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Decorate\\Providers\\AdminInstallCoreUiProvider"
+      ]
+    }
+  },
+  "support": {
+    "issues": "https://github.com/decorate/VueAdminInstallCoreUi/issues",
+    "source": "https://github.com/decorate/VueAdminInstallCoreUi"
+  }
+}
