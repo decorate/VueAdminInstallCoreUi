@@ -5,6 +5,7 @@ namespace Decorate\Providers;
 use Decorate\AdminInstall;
 use Decorate\CloneTemplate;
 use Decorate\MakeAdminLogin;
+use Illuminate\Support\Arr;
 use Illuminate\Support\ServiceProvider;
 
 class AdminInstallCoreUiProvider extends ServiceProvider
@@ -52,5 +53,31 @@ class AdminInstallCoreUiProvider extends ServiceProvider
         });
 
         $this->commands('command.make.clone-template');
+
+        $this->mergeConfigFrom(__DIR__. '/../config/auth.php', 'auth');
+    }
+
+    protected function mergeConfigFrom($path, $key)
+    {
+        $config = $this->app['config']->get($key, []);
+        $this->app['config']->set($key, $this->mergeConfig(require $path, $config));
+    }
+
+    protected function mergeConfig(array $original, array $merging)
+    {
+        $array = array_merge($original, $merging);
+        foreach ($original as $key => $value) {
+            if (! is_array($value)) {
+                continue;
+            }
+            if (! Arr::exists($merging, $key)) {
+                continue;
+            }
+            if (is_numeric($key)) {
+                continue;
+            }
+            $array[$key] = $this->mergeConfig($value, $merging[$key]);
+        }
+        return $array;
     }
 }

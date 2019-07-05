@@ -3,6 +3,7 @@
 namespace Decorate;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\File;
 
 class CloneTemplate extends Command
 {
@@ -28,7 +29,13 @@ class CloneTemplate extends Command
         "flag-icon-css",
         "simple-line-icons",
         "js-cookie",
-        "font-awesome"
+        "font-awesome",
+        "@team-decorate/alcjs",
+        "bootstrap-vue",
+        "vue-chartjs",
+        "chart.js",
+        "sass-loader",
+        "node-sass"
     ];
 
     /**
@@ -60,7 +67,8 @@ class CloneTemplate extends Command
         // clone template
         exec("cd $path && ". 'git clone https://github.com/decorate/vue-admin-coreui.git', $out);
 
-        \File::move(base_path('vue-admin-coreui/src'), resource_path('vue-admin'));
+        File::move(base_path('vue-admin-coreui/src'), resource_path('vue-admin'));
+        File::deleteDirectory(base_path('vue-admin-coreui'));
     }
 
     private function getInstaller() {
@@ -69,7 +77,7 @@ class CloneTemplate extends Command
 
     private function getBeforeLoadPackage() {
         try {
-            $json = \File::get(base_path('package.json'));
+            $json = File::get(base_path('package.json'));
             $json = json_decode($json);
 
             return collect($this->injectJson)

@@ -42,9 +42,18 @@ class MakeAdminLogin extends Command
 
         \File::put($path, \File::get($this->getStub()));
 
+        $this->call('make:model', ['name' => 'Models/Admin.php']);
+
+        $path = app_path('Models/Admin.php');
+
+        \File::put($path, \File::get($this->getStubModel()));
     }
 
     public function getStub() {
         return __DIR__ . '/stubs/LoginController.php';
+    }
+
+    public function getStubModel() {
+        return __DIR__. '/stubs/Admin.php';
     }
 }
