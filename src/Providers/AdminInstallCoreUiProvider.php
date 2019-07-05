@@ -21,8 +21,9 @@ class AdminInstallCoreUiProvider extends ServiceProvider
         $this->loadMigrationsFrom(__DIR__. '/../migration');
 
         $this->publishes([
-            __DIR__.'/../route/admin.php' => base_path('/routes'),
-            __DIR__.'/../migration/' => base_path('/database/migrations')
+            __DIR__.'/../route/admin.php' => base_path('/routes/admin.php'),
+            __DIR__.'/../migration/' => base_path('/database/migrations'),
+            __DIR__.'/../view/index.blade.php' => resource_path('/views/admin/index.blade.php')
         ]);
     }
 
