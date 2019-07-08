@@ -13,16 +13,6 @@ With composer:
     php artisan admin-install
     php artisan passport:install
     
-### Published Files
-
-- database/migrations/create_admin_table
-- database/seeds/AdminsSeeder.php
-- routes/admin.php
-- app/Http/Controllers/Admin/LoginController.php
-- app/Models/Admin.php
-- resources/views/admin/index.blade.php
-- resources/vue-admin
-
 ### Replace
 
 #### app/Providers/RouteServiceProvider.php
@@ -44,6 +34,22 @@ mix
     .js('resources/js/app.js', 'public/dist/js')
     .js('resources/vue-admin/main.js', 'public/dist/js')
 ```
+    npm run dev
 
 ### Check
+
     /admin/pages/login
+    
+    id/pass
+    admin/secret
+    
+### Published Files
+
+- database/migrations/create_admin_table
+- database/seeds/AdminsSeeder.php
+- routes/admin.php
+- app/Http/Controllers/Admin/LoginController.php
+- app/Models/Admin.php
+- resources/views/admin/index.blade.php
+- resources/vue-admin
+
