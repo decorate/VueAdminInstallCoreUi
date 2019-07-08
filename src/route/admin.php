@@ -25,7 +25,7 @@ Route::group(['middleware' => ['auth:admin']], function () {
         return User::paginate(3);
     });
 
-    Route::post('/login', 'Admin\LoginController@logout');
+    Route::post('/logout', 'Admin\LoginController@logout');
 });
 
 Route::group(['middleware' => 'guest:api'], function () {
