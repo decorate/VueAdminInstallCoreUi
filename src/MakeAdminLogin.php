@@ -42,11 +42,18 @@ class MakeAdminLogin extends Command
 
         \File::put($path, \File::get($this->getStub()));
 
-        $this->call('make:model', ['name' => 'Models/Admin']);
+        $this->call('make:model', ['name' => 'Models/Admin', '--factory']);
 
         $path = app_path('Models/Admin.php');
 
         \File::put($path, \File::get($this->getStubModel()));
+
+        $this->call('make:seed', ['name' => 'AdminsSeeder']);
+
+        $path = base_path('database/seeds/AdminsSeeder');
+        \File::push($path, \File::get($this->getStubSeed()));
+
+        $this->call('db:seed', ['--class' => 'AdminsSeeder']);
     }
 
     public function getStub() {
@@ -55,5 +62,9 @@ class MakeAdminLogin extends Command
 
     public function getStubModel() {
         return __DIR__. '/stubs/Admin.php';
+    }
+
+    public function getStubSeed() {
+        return __DIR__. '/seed/AdminsSeeder.php';
     }
 }
