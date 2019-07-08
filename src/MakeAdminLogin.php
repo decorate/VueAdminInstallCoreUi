@@ -42,9 +42,9 @@ class MakeAdminLogin extends Command
 
         \File::put($path, \File::get($this->getStub()));
 
-        $this->call('make:model', ['name' => 'Models/Admin', '--factory' => true]);
-
         $path = app_path('Models/Admin.php');
+        \File::delete($path);
+        $this->call('make:model', ['name' => 'Models/Admin', '--factory' => true]);
 
         \File::put($path, \File::get($this->getStubModel()));
 

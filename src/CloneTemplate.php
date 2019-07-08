@@ -55,6 +55,10 @@ class CloneTemplate extends Command
      */
     public function handle()
     {
+        if(File::isDirectory(resource_path('vue-admin'))) {
+            File::deleteDirectory(resource_path('vue-admin'));
+        }
+
         $installer = $this->getInstaller();
 
         $install = implode(' ', $this->getBeforeLoadPackage());
