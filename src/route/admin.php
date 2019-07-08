@@ -32,6 +32,6 @@ Route::group(['middleware' => 'guest:api'], function () {
     Route::post('/login', 'Admin\LoginController@login');
 });
 
-Route::get('/admin/{path?}', function () {
+Route::get('/{path?}', function () {
     return view('admin.index');
 })->where('path', '.*');
