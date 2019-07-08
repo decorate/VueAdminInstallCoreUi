@@ -17,7 +17,6 @@ class AdminInstallCoreUiProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->loadRoutesFrom(__DIR__. '/../route/admin.php');
         $this->loadMigrationsFrom(__DIR__. '/../migration');
 
         $this->publishes([
