@@ -3,6 +3,7 @@
 namespace Decorate\Providers;
 
 use Decorate\AdminInstall;
+use Decorate\AdminInstallRollback;
 use Decorate\CloneTemplate;
 use Decorate\MakeAdminLogin;
 use Illuminate\Support\Arr;
@@ -50,6 +51,12 @@ class AdminInstallCoreUiProvider extends ServiceProvider
         });
 
         $this->commands('command.make.clone-template');
+
+        $this->app->singleton('command.admin-install.rollback', function ($app) {
+            return new AdminInstallRollback();
+        });
+
+        $this->commands('command.admin-install.rollback');
 
         $this->mergeConfigFrom(__DIR__. '/../config/auth.php', 'auth');
     }
