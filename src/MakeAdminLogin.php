@@ -42,7 +42,7 @@ class MakeAdminLogin extends Command
 
         \File::put($path, \File::get($this->getStub()));
 
-        $this->call('make:model', ['name' => 'Models/Admin', '--factory']);
+        $this->call('make:model', ['name' => 'Models/Admin', '--factory' => true]);
 
         $path = app_path('Models/Admin.php');
 
@@ -52,6 +52,8 @@ class MakeAdminLogin extends Command
 
         $path = base_path('database/seeds/AdminsSeeder.php');
         \File::push($path, \File::get($this->getStubSeed()));
+
+        $this->call('migrate');
 
         $this->call('db:seed', ['--class' => 'AdminsSeeder']);
     }

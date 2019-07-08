@@ -16,7 +16,7 @@ use App\Models\User;
 |
 */
 
-Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin'], function () {
+Route::group(['middleware' => ['auth:admin']], function () {
     Route::get('/user', function () {
         return Auth::user();
     });
@@ -24,10 +24,12 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin'], function () 
     Route::get('/users', function() {
         return User::paginate(3);
     });
+
+    Route::post('/login', 'Admin\LoginController@logout');
 });
 
-Route::group(['middleware' => 'guest:api', 'prefix' => 'admin'], function () {
-    Route::post('/login', 'App\Http\Controllers\Admin\LoginController@login');
+Route::group(['middleware' => 'guest:api'], function () {
+    Route::post('/login', 'Admin\LoginController@login');
 });
 
 Route::get('/admin/{path?}', function () {

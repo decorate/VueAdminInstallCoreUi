@@ -38,7 +38,7 @@ class AdminInstall extends Command
     public function handle()
     {
         $this->call('vendor:publish', [
-            '--provider' => '"\Decorate\Providers\AdminInstallCoreUiProvider"'
+            '--provider' => 'Decorate\Providers\AdminInstallCoreUiProvider'
         ]);
 
         if($this->option('yarn')) {
