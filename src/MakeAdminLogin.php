@@ -50,7 +50,7 @@ class MakeAdminLogin extends Command
 
         $this->call('make:seed', ['name' => 'AdminsSeeder']);
 
-        $path = base_path('database/seeds/AdminsSeeder');
+        $path = base_path('database/seeds/AdminsSeeder.php');
         \File::push($path, \File::get($this->getStubSeed()));
 
         $this->call('db:seed', ['--class' => 'AdminsSeeder']);
