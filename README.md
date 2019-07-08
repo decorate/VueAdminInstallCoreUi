@@ -53,3 +53,7 @@ mix
 - resources/views/admin/index.blade.php
 - resources/vue-admin
 
+### Commands
+- admin-install
+- admin-install:rollback
+
